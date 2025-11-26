@@ -1,0 +1,12 @@
+# Ignore build outputs
+lib/
+*.so
+*.dll
+*.o
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Data
+data/tasks.db
