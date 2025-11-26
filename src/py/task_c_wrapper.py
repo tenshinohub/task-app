@@ -21,6 +21,7 @@ class Task(Structure):
     _fields_ = [
         ("id", c_int),
         ("done", c_int),
+        ("priority", c_int),
         ("text", ctypes.c_char * 256),
     ]
 
@@ -77,6 +78,7 @@ def save_tasks_py(filepath: str, tasks):
     for i, t in enumerate(tasks):
         arr[i].id = t.id
         arr[i].done = t.done
+        arr[i].priority = 3 #default priority
         arr[i].text = t.text.encode() if isinstance(t.text, str) else t.text
     return lib.save_tasks(filepath.encode(), arr, len(tasks))
 

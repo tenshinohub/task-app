@@ -11,7 +11,7 @@ size_t load_tasks(const char *filepath, Task *tasks, size_t capacity) {
     size_t count = 0;
     while (count < capacity) {
         Task t;
-        if (fscanf(fp, "%d	%d	%255[^\n]", &t.id, &t.done, t.text) != 3)
+        if (fscanf(fp, "%d	%d	%d	%255[^\n]", &t.id, &t.done, &t.priority, t.text) != 4)
             break;
         tasks[count++] = t;
         fgetc(fp); // consume newline
@@ -27,7 +27,7 @@ int save_tasks(const char *filepath, Task *tasks, size_t count) {
     if (!fp) return 0;
 
     for (size_t i = 0; i < count; i++) {
-        fprintf(fp, "%d	%d	%s\n", tasks[i].id, tasks[i].done, tasks[i].text);
+        fprintf(fp, "%d	%d	%d	%s\n", tasks[i].id, tasks[i].done, tasks[i].priority, tasks[i].text);
     }
 
     fclose(fp);
