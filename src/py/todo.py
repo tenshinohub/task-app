@@ -60,6 +60,17 @@ def remove_task(task_id: int):
         return
     save_tasks(tasks[:new_count])
     print(f"Removed task #{task_id}.")
+    
+    
+def edit_task(task_id: int, text):
+    tasks, count = load_tasks()
+    success, new_arr = task_c_wrapper.edit_task_py(tasks, task_id, text)
+    if not success:
+        print("Task not found.")
+        exit(1)
+    save_tasks(new_arr)
+    print("Task updated.")
+    exit(0)
 
 
 def print_usage():
@@ -68,6 +79,7 @@ def print_usage():
     print("  todo.py list")
     print("  todo.py done <id>")
     print("  todo.py remove <id>")
+    print("  todo.py edit <id> <text>")
 
 
 def main():
@@ -84,6 +96,8 @@ def main():
         mark_done(int(sys.argv[2]))
     elif cmd == "remove" and len(sys.argv) == 3:
         remove_task(int(sys.argv[2]))
+    elif cmd == "edit" and len(sys.argv) >= 3:
+        edit_task(int(sys.argv[2]), " ".join(sys.argv[3:]))
     else:
         print_usage()
 
