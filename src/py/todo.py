@@ -41,7 +41,7 @@ def list_tasks():
         return
     for t in tasks:
         status = "[x]" if t.done else "[ ]"
-        print(f"{t.id:3d} {status} {t.text.decode()}")
+        print(f"{t.id:3d} {{{t.priority}}} {status} {t.text.decode()}")
 
 
 def mark_done(task_id: int):    

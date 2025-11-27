@@ -8,7 +8,7 @@
 typedef struct {
     int id;
     int done;      // 0 = not done, 1 = done
-	int priority;
+    int priority;
     char text[256];
 } Task;
 
