@@ -27,4 +27,6 @@ int mark_done_task(Task *tasks, size_t count, int task_id);
 
 size_t remove_task(Task *tasks, size_t count, int task_id);
 
+int edit_task(Task *tasks, size_t count, int id, const char *new_text);
+
 #endif

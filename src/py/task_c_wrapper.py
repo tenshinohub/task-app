@@ -65,6 +65,10 @@ lib.mark_done_task.restype = c_int
 lib.remove_task.argtypes = (ctypes.POINTER(Task), c_size_t, c_int)
 lib.remove_task.restype = c_size_t
 
+# edit_task
+lib.edit_task.argtypes = (ctypes.POINTER(Task), c_size_t, c_int, c_char_p)
+lib.edit_task.restype = c_int
+
 # ---------------------------
 # Python wrapper functions
 # ---------------------------
@@ -101,6 +105,13 @@ def remove_task_py(tasks, task_id: int):
     for i, t in enumerate(tasks):
         arr[i] = t
     return lib.remove_task(arr, len(tasks), task_id)
+
+
+def edit_task_py(tasks, task_id: int, new_text: str):
+    arr = (Task * len(tasks))()
+    for i, t in enumerate(tasks):
+        arr[i] = t
+    return lib.edit_task(arr, len(tasks), task_id, new_text.encode()), arr
 
 # Small test
 """

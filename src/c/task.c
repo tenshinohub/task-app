@@ -62,3 +62,14 @@ size_t remove_task(Task *tasks, size_t count, int task_id) {
     }
     return new_count;
 }
+
+int edit_task(Task *tasks, size_t count, int id, const char *new_text) {
+    for (size_t i = 0; i < count; i++) {
+        if (tasks[i].id == id) {
+            strncpy(tasks[i].text, new_text, sizeof(tasks[i].text));
+            tasks[i].text[sizeof(tasks[i].text) - 1] = '\0';
+            return 1; // success
+        }
+    }
+    return 0; // not found
+}
