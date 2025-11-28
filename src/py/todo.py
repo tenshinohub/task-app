@@ -64,10 +64,10 @@ def remove_task(task_id: int):
 
 def print_usage():
     print("Usage:")
-    print("  todo.py add <text>")
-    print("  todo.py list")
-    print("  todo.py done <id>")
-    print("  todo.py remove <id>")
+    print("todo.py add <text>")
+    print("todo.py list")
+    print("todo.py done <id>")
+    print("todo.py remove <id>")
 
 
 def main():
